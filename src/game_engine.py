@@ -1,3 +1,4 @@
+import os
 import sys
 import yaml
 
@@ -105,6 +106,7 @@ class Game:
             Markers.PLAYER_1: self.__player_turn,
             Markers.PLAYER_2: self.__opponent_turn
         }
+        os.system('cls')
         self.board.display()
         while True:
             result = self.mechanics.check_end()

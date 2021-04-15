@@ -4,8 +4,9 @@ import yaml
 
 from time import perf_counter
 from typing import Optional
+from colorama import init, Fore
 
-from .board import Markers, Board
+from .board import Markers, Board, PositionError
 from .mechanics import Mechanics
 from .oponent import Opponent
 
@@ -21,6 +22,7 @@ class Game:
     CONFIG_PATH = './tic-tac-toe/config.yaml'
 
     def __init__(self):
+        init(autoreset=True)
         self.config = self.__load_config().get('engine', {})
         self.board = Board()
         self.ab_pruning = self.config['ab_pruning']
@@ -52,7 +54,7 @@ class Game:
             sys.exit()
 
         try:
-            result = int(coordinate)
+            result = int(coordinate) - 1
         except ValueError:
             print(self.config['text']['invalid_msg'])
             return
@@ -92,8 +94,8 @@ class Game:
             start = perf_counter()
             (_, x, y) = self.opponent.max()
             end = perf_counter()
-        print(self.config['debug']['solution'].format(seconds=end - start))
-        print(self.config['debug']['opponent_move'].format(x=x, y=y))
+        print(self.config['debug']['solution'].format(seconds=round(end - start, 2)))
+        print(self.config['debug']['opponent_move'].format(x=x+1, y=y+1))
         self.board.mark(Markers.PLAYER_2, x, y)
         self.turn = Markers.PLAYER_1
         self.board.display()
@@ -107,10 +109,19 @@ class Game:
             Markers.PLAYER_2: self.__opponent_turn
         }
         os.system('cls')
+        print('Ok, here we go Tic-Tac Toe\n'
+              'Rules are. Input x and y to match the coordinates.\n'
+              'x and y can be between 1 and 3.\n'
+              'If you want to exit just type exit anytime you can input\n\n')
+
         self.board.display()
         while True:
-            result = self.mechanics.check_end()
-            if result is not None:
-                print(self.EVALUATOR[result])
-                break
-            TURN_MAPPER[self.turn]()
+            try:
+                result = self.mechanics.check_end()
+                if result is not None:
+                    print(Fore.GREEN + self.EVALUATOR[result])
+                    break
+                TURN_MAPPER[self.turn]()
+            except PositionError:
+                print('Ups. Coordinate were not between 1 and 3. Try again')
+                continue

@@ -1,0 +1,22 @@
+# Tic Tac Toe configuration and texts
+
+opponent:
+  max:
+    v: -1
+    x: 0
+    y: 0
+  min:
+    v: 1
+    x: 0
+    y: 0
+
+engine:
+  text:
+    exit_msg: Thank you for playing! See you soon.
+    invalid_msg: Invalid coordinate! Try again.
+    place_msg: Not a valid place! Try again.
+  debug:
+    solution: 'Solution found in: {seconds}'
+    opponent_move: 'Opponent move: {x}, {y}'
+    user_input: 'Input {c} coordinate: '
+  ab_pruning: true

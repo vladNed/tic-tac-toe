@@ -3,6 +3,7 @@ from numpy import diagonal, rot90
 
 from .board import Board, Markers
 
+
 class Mechanics:
 
     def __init__(self, board: Board):

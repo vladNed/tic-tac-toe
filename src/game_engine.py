@@ -9,7 +9,6 @@ from .mechanics import Mechanics
 from .oponent import Opponent
 
 
-
 class Game:
 
     EVALUATOR = {
@@ -113,4 +112,3 @@ class Game:
                 print(self.EVALUATOR[result])
                 break
             TURN_MAPPER[self.turn]()
-

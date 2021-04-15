@@ -1,8 +1,10 @@
 from numpy import ndarray, full
 from enum import Enum
 
+
 class PositionError(Exception):
     pass
+
 
 class TagError(Exception):
     pass
@@ -44,5 +46,8 @@ class Board:
         """
         if (not (0 <= x <= 2)) or (not (0 <= y <= 2)):
             raise PositionError
+
+        if not isinstance(tag, Markers):
+            raise TagError
 
         self.state[x][y] = tag.value

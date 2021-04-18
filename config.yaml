@@ -20,4 +20,4 @@ engine:
     opponent_move: 'Opponent move: {x}, {y}'
     user_input: 'Input {c} coordinate: '
   ab_pruning: true
-  starting_turn: 0
+  starting_turn: "X"

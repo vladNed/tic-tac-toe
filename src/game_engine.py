@@ -9,7 +9,6 @@ from .mechanics import Mechanics
 from .oponent import Opponent
 
 
-
 class Game:
 
     EVALUATOR = {
@@ -26,7 +25,7 @@ class Game:
         self.ab_pruning = self.config['ab_pruning']
         self.mechanics = Mechanics(self.board)
         self.opponent = Opponent(self.mechanics, self.ab_pruning)
-        self.turn = Markers.PLAYER_1
+        self.turn = Markers(self.config['starting_turn'])
         if self.ab_pruning:
             self.beta = 2
             self.alpha = -2

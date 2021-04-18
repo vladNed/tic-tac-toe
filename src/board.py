@@ -1,8 +1,10 @@
 from numpy import ndarray, full
 from enum import Enum
 
+
 class PositionError(Exception):
     pass
+
 
 class TagError(Exception):
     pass

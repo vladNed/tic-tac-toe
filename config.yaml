@@ -16,7 +16,7 @@ engine:
     invalid_msg: Invalid coordinate! Try again.
     place_msg: Not a valid place! Try again.
   debug:
-    solution: 'Solution found in: {seconds}'
+    solution: 'Solution found in: {seconds} seconds'
     opponent_move: 'Opponent move: {x}, {y}'
     user_input: 'Input {c} coordinate: '
   ab_pruning: true

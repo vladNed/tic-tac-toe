@@ -5,6 +5,7 @@ from typing import Tuple
 from .board import Markers
 from .mechanics import Mechanics
 
+
 class Opponent:
     """
     AI Tic Tac Toe opponent algorithm
